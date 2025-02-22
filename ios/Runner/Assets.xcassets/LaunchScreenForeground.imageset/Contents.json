@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "submon_icon_monochrome.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
