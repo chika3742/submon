@@ -9,3 +9,4 @@
 
 gradle.xml
 *WizardSettings.xml
+deploymentTargetSelector.xml
