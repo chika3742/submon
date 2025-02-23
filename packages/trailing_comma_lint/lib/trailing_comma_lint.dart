@@ -211,7 +211,7 @@ class _TrailingCommaFix extends DartFix {
         createAddTrailingCommaFix(node.rightParenthesis.previous!);
       })
       ..addFormalParameterList((node) {
-        if (analysisError.offset != node.rightParenthesis.offset) return;
+        if (analysisError.offset != (node.rightDelimiter ?? node.rightParenthesis).offset) return;
         createAddTrailingCommaFix((node.rightDelimiter ?? node.rightParenthesis).previous!);
       })
       ..addListLiteral((node) {

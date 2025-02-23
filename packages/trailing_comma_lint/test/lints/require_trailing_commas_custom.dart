@@ -46,6 +46,12 @@ void fn5(
   String? bar
   // expect_lint: require_trailing_commas_custom
 ) {}
+void fn12(
+  String? foo,
+  String? bar, {
+  String? baz
+  // expect_lint: require_trailing_commas_custom
+}) {}
 
 // list literal
 final list = [
