@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/submon.iml" filepath="$PROJECT_DIR$/submon.iml" />
       <module fileurl="file://$PROJECT_DIR$/android/submon_android.iml" filepath="$PROJECT_DIR$/android/submon_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/trailing_comma_lint/trailing_comma_lint.iml" filepath="$PROJECT_DIR$/packages/trailing_comma_lint/trailing_comma_lint.iml" />
     </modules>
   </component>
 </project>

@@ -20,6 +20,9 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+  custom_lint: ^0.7.3
+  trailing_comma_lint:
+    path: ./packages/trailing_comma_lint
 
 flutter:
   uses-material-design: true
