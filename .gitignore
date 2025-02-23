@@ -40,3 +40,6 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# Slang(i18n) analysis related
+**/i18n/_*

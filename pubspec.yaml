@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  slang: ^4.4.1
+  slang_flutter: ^4.4.0
 
 dev_dependencies:
   flutter_test:
