@@ -123,7 +123,15 @@ class _TrailingCommaLintRule extends DartLintRule {
           lastNode: node.cases.last,
         );
       })
-    ;
+      ..addEnumDeclaration((node) {
+        if (node.constants.isEmpty) return;
+        checker.check(
+          openingToken: node.leftBracket,
+          closingToken: node.semicolon ?? node.rightBracket,
+          firstNode: node.constants.first,
+          lastNode: node.constants.last,
+        );
+      });
   }
 
   @override
@@ -239,6 +247,10 @@ class _TrailingCommaFix extends DartFix {
       ..addSwitchExpression((node) {
         if (analysisError.offset != node.rightBracket.offset) return;
         createAddTrailingCommaFix(node.rightBracket.previous!);
+      })
+      ..addEnumDeclaration((node) {
+        if (analysisError.offset != (node.semicolon ?? node.rightBracket).offset) return;
+        createAddTrailingCommaFix((node.semicolon ?? node.rightBracket).previous!);
       })
     ;
   }

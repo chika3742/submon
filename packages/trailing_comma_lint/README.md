@@ -10,12 +10,15 @@ Foo(
   a: 1,
   b: 2,
 );
-```
-```dart
+
 Foo(Bar(
   a: 1,
   b: 2,
 ));
+
+useEffect(() {
+  // ...
+}, []);
 ```
 
 ### ❌️ Bad
@@ -24,22 +27,48 @@ Foo(
   a: 1,
   b: 2 // <-
 );
-```
-```dart
+
 Foo(Bar(
   a: 1,
   b: 2 // <-
 ));
+
+useEffect(
+  () {
+    // ...
+  },
+  [] // <-
+);
 ```
+Records supported
 ```dart
 final (String, String) foo = (
   "bar",
   "baz" // <-
 );
 ```
+Switch expressions supported
 ```dart
 final foo = switch (state) {
   State.success => 0,
   State.failure => 1 // <-
+}
+```
+
+Enums supported
+```dart
+enum FooState {
+  bar,
+  baz // <-
+}
+
+enum BarState {
+  taro("taro"),
+  hanako("hanako") // <-
+  ;
+  
+  const BarState(this.name);
+
+  final String name;
 }
 ```

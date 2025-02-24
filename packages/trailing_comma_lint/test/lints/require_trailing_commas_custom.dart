@@ -162,3 +162,27 @@ void fn9() {
   );
 }
 int fn10() => 10;
+
+// enum
+enum FooState {
+  bar,
+  baz
+  // expect_lint: require_trailing_commas_custom
+}
+enum FooState2 {
+  bar,
+  baz
+  // expect_lint: require_trailing_commas_custom
+  ;
+}
+
+enum BarState {
+  taro("taro"),
+  hanako("hanako")
+  // expect_lint: require_trailing_commas_custom
+  ;
+
+  const BarState(this.name);
+
+  final String name;
+}
