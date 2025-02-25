@@ -1,0 +1,97 @@
+name: Lint & Test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Flutter version
+        id: get-flutter-version
+        run: echo "FLUTTER_VERSION=`jq -r '.flutter' .fvmrc`" >> $GITHUB_OUTPUT
+
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/fvm/versions/${{ steps.get_flutter_version.outputs.FLUTTER_VERSION }}
+            ~/fvm/cache.git
+          key: ${{ runner.os }}-flutter-${{ steps.get_flutter_version.outputs.FLUTTER_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+          save-always: true
+
+      - name: Cache pub-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
+
+      - uses: nick-fields/retry@v3
+        with:
+          command: curl -fsSL https://fvm.app/install.sh | bash
+          retry_on: error
+
+      - name: Install dependencies
+        run: |
+          fvm use
+          fvm flutter pub get
+
+      - name: Lint (dart analyze)
+        run: fvm dart analyze
+
+      - name: Lint (custom_lint)
+        run: fvm dart run custom_lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Flutter version
+        id: get-flutter-version
+        run: echo "FLUTTER_VERSION=`jq -r '.flutter' .fvmrc`" >> $GITHUB_OUTPUT
+
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/fvm/versions/${{ steps.get_flutter_version.outputs.FLUTTER_VERSION }}
+            ~/fvm/cache.git
+          key: ${{ runner.os }}-flutter-${{ steps.get_flutter_version.outputs.FLUTTER_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+          save-always: true
+
+      - name: Cache pub-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
+
+      - uses: nick-fields/retry@v3
+        with:
+          command: curl -fsSL https://fvm.app/install.sh | bash
+          retry_on: error
+
+      - name: Install dependencies
+        run: |
+          fvm use
+          fvm flutter pub get
+
+      - name: Test
+        run: fvm flutter test
