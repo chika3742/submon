@@ -1,0 +1,35 @@
+name: Lint & Test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: chika3742/setup-fvm@main
+
+      - name: Lint (dart analyze)
+        run: fvm dart analyze
+
+      - name: Lint (custom_lint)
+        run: fvm dart run custom_lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: chika3742/setup-fvm@main
+
+      - name: Test
+        run: fvm flutter test
