@@ -1,7 +1,12 @@
 import "package:flutter/material.dart";
+import "package:flutter_localizations/flutter_localizations.dart";
+import "package:submon/i18n/strings.g.dart";
 
 void main() {
-  runApp(const Application());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(TranslationProvider(
+    child: const Application(),
+  ));
 }
 
 class Application extends StatelessWidget {
@@ -9,6 +14,10 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return MaterialApp(
+      locale: TranslationProvider.of(context).flutterLocale,
+      supportedLocales: AppLocaleUtils.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+    );
   }
 }
