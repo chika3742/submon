@@ -111,7 +111,7 @@ class _TrailingCommaLintRule extends DartLintRule {
           closingToken: node.rightParenthesis,
           firstNode: fields.first,
           lastNode: fields.last,
-          errorToken: node.namedFields?.rightBracket ?? node.rightParenthesis
+          errorToken: node.namedFields?.rightBracket ?? node.rightParenthesis,
         );
       })
       ..addSwitchExpression((node) {
