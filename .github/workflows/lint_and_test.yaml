@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: chika3742/setup-fvm@main
+      - name: Initialize Flutter SDK
+        uses: chika3742/setup-fvm@v2
 
       - name: Lint (dart analyze)
         run: fvm dart analyze
@@ -29,7 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: chika3742/setup-fvm@main
+      - name: Initialize Flutter SDK
+        uses: chika3742/setup-fvm@v2
 
       - name: Test
         run: fvm flutter test
