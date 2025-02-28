@@ -30,7 +30,14 @@ linter:
     prefer_double_quotes: true
     cancel_subscriptions: true
     close_sinks: true
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    prefer_relative_imports: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    eol_at_end_of_file: true
+    directives_ordering: true
+    always_declare_return_types: true
+    always_specify_types: true
+    avoid_void_async: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
