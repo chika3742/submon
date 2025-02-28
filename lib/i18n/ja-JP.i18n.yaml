@@ -1,2 +1,8 @@
 common:
   appName: "Submon"
+
+pages:
+  submissions: 提出物
+  digestives: Digestive
+  timetable: 時間割
+  more: その他
