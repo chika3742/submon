@@ -13,14 +13,13 @@ void main() {
   // Filed a PR to add the default resolver: https://github.com/slang-i18n/slang/pull/289
   // TODO: remove this once the PR is merged and released
   LocaleSettings.setPluralResolver(
-    language: "ja",
+    locale: AppLocale.jaJp,
     cardinalResolver: (num n, {String? few, String? many, String? one, String? other, String? two, String? zero}) => other!,
     ordinalResolver: (num n, {String? few, String? many, String? one, String? other, String? two, String? zero}) => other!,
   );
+  LocaleSettings.useDeviceLocaleSync();
   runApp(ProviderScope(
-    child: TranslationProvider(
-      child: const Application(),
-    ),
+    child: const Application(),
   ));
 }
 
@@ -63,7 +62,7 @@ class Application extends StatelessWidget {
           ),
         ],
       ),
-      locale: TranslationProvider.of(context).flutterLocale,
+      locale: LocaleSettings.currentLocale.flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
     );
