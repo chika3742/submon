@@ -39,6 +39,40 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final TranslationsCommonJaJp common = TranslationsCommonJaJp.internal(_root);
 	late final TranslationsPagesJaJp pages = TranslationsPagesJaJp.internal(_root);
+	Map<String, dynamic> get durationUnit => {
+		'hours': ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+			n: n,
+			resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+			other: () => TextSpan(children: [
+				nBuilder(n),
+				const TextSpan(text: '時間'),
+			]),
+		),
+		'days': ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+			n: n,
+			resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+			other: () => TextSpan(children: [
+				nBuilder(n),
+				const TextSpan(text: '日'),
+			]),
+		),
+		'weeks': ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+			n: n,
+			resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+			other: () => TextSpan(children: [
+				nBuilder(n),
+				const TextSpan(text: '週間'),
+			]),
+		),
+		'months': ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+			n: n,
+			resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+			other: () => TextSpan(children: [
+				nBuilder(n),
+				const TextSpan(text: 'ヶ月'),
+			]),
+		),
+	};
 }
 
 // Path: common
@@ -74,6 +108,38 @@ extension on Translations {
 			case 'pages.digestives': return 'Digestive';
 			case 'pages.timetable': return '時間割';
 			case 'pages.more': return 'その他';
+			case 'durationUnit.hours': return ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+				n: n,
+				resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+				other: () => TextSpan(children: [
+					nBuilder(n),
+					const TextSpan(text: '時間'),
+				]),
+			);
+			case 'durationUnit.days': return ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+				n: n,
+				resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+				other: () => TextSpan(children: [
+					nBuilder(n),
+					const TextSpan(text: '日'),
+				]),
+			);
+			case 'durationUnit.weeks': return ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+				n: n,
+				resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+				other: () => TextSpan(children: [
+					nBuilder(n),
+					const TextSpan(text: '週間'),
+				]),
+			);
+			case 'durationUnit.months': return ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
+				n: n,
+				resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),
+				other: () => TextSpan(children: [
+					nBuilder(n),
+					const TextSpan(text: 'ヶ月'),
+				]),
+			);
 			default: return null;
 		}
 	}

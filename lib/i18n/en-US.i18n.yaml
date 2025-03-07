@@ -1,1 +1,20 @@
-{}
+common:
+  appName: Submon
+pages:
+  submissions: Submissions
+  digestives: Digestives
+  timetable: Timetable
+  more: More
+durationUnit(map):
+  hours(rich):
+    one: $n hour
+    other: $n hours
+  days(rich):
+    one: $n day
+    other: $n days
+  weeks(rich):
+    one: $n week
+    other: $n weeks
+  months(rich):
+    one: $n month
+    other: $n months

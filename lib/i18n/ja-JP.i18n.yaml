@@ -1,8 +1,20 @@
 common:
-  appName: "Submon"
+  appName: Submon
 
 pages:
   submissions: 提出物
   digestives: Digestive
   timetable: 時間割
   more: その他
+
+# when adding the (map) modifier, descendant rich texts are not generated. (bug?)
+# To get around this, we use flat maps in the code.
+durationUnit(map):
+  hours(rich):
+    other: $n時間
+  days(rich):
+    other: $n日
+  weeks(rich):
+    other: $n週間
+  months(rich):
+    other: $nヶ月
