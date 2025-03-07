@@ -10,6 +10,13 @@ import "ui/core/theme_extension.dart";
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // Filed a PR to add the default resolver: https://github.com/slang-i18n/slang/pull/289
+  // TODO: remove this once the PR is merged and released
+  LocaleSettings.setPluralResolver(
+    language: "ja",
+    cardinalResolver: (num n, {String? few, String? many, String? one, String? other, String? two, String? zero}) => other!,
+    ordinalResolver: (num n, {String? few, String? many, String? one, String? other, String? two, String? zero}) => other!,
+  );
   runApp(ProviderScope(
     child: TranslationProvider(
       child: const Application(),
