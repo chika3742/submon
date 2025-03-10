@@ -37,22 +37,27 @@ class HomeScreen extends StatelessWidget {
     final int currentIndex = _routes.indexWhere((GoRoute e) => e.path == currentPath);
 
     return Material(
-      child: SafeArea(
-        bottom: false,
-        child: Column(
-          children: <Widget>[
-            Expanded(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: MediaQuery.removePadding(
+              context: context,
+              removeBottom: true,
               child: navigator,
             ),
-            NavigationBar(
+          ),
+          MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: NavigationBar(
               destinations: _navigationBarDestinations,
               selectedIndex: currentIndex,
               onDestinationSelected: (int value) {
                 context.go(_routes[value].path);
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
