@@ -1,7 +1,7 @@
 import "package:clock/clock.dart" show clock;
 import "package:drift/drift.dart";
 
-import "db.dart";
+import "../services/db.dart";
 import "type_converters.dart";
 
 class Submissions extends Table {
