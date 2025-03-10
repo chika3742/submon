@@ -174,7 +174,7 @@ class _RemainingTimePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final double triangleWidth = (size.height - verticalInset * 2) / tan(strokeAngle);
 
-    final Path path = Path()
+    final path = Path()
       ..moveTo(
         size.width + (triangleWidth / 2) + (strokeWidth / 2),
         verticalInset,
@@ -184,7 +184,7 @@ class _RemainingTimePainter extends CustomPainter {
       ..relativeLineTo(triangleWidth, -(size.height - verticalInset * 2))
       ..close();
 
-    final Paint paint = Paint()
+    final paint = Paint()
       ..color = strokeColor
       ..style = PaintingStyle.fill;
 

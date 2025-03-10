@@ -69,7 +69,7 @@ class Application extends StatelessWidget {
   }
 
   ThemeData _buildBaseTheme(Brightness brightness) {
-    final ThemeData baseTheme = ThemeData(
+    final baseTheme = ThemeData(
       brightness: brightness,
       colorSchemeSeed: Colors.green,
       pageTransitionsTheme: PageTransitionsTheme(
