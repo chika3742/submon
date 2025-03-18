@@ -41,7 +41,7 @@ class DateTimePickerBottomSheet extends HookWidget {
                 month: value.month,
                 day: value.day,
               );
-            }
+            },
           ),
 
           Divider(height: 0),
@@ -66,7 +66,7 @@ class DateTimePickerBottomSheet extends HookWidget {
                 hour: value.hour,
                 minute: value.minute,
               );
-            }
+            },
           ),
 
           Divider(height: 0),
