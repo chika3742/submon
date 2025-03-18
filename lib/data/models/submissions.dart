@@ -1,7 +1,6 @@
 import "package:clock/clock.dart" show clock;
 import "package:drift/drift.dart";
 
-import "../services/db.dart";
 import "type_converters.dart";
 
 class Submissions extends Table {
@@ -14,18 +13,19 @@ class Submissions extends Table {
   /// Detail text of the submission.
   TextColumn get details => text()();
 
-  /// Raw due datetime of the submission. To obtain a normalized datetime, use
-  /// [SubmissionExtension.dueDateTime].
-  DateTimeColumn get due => dateTime()();
+  /// Raw due datetime of the submission.
+  DateTimeColumn get due => dateTime()
+      // constrain to 23:59 if dueDateOnly is true
+      .check(dueDateOnly.isValue(false) | (due.hour.isValue(23) & due.minute.isValue(59)))();
 
   /// If true, the user only cares about the due date, not the time.
   BoolColumn get dueDateOnly => boolean()();
 
   /// Whether the submission is marked as done.
-  BoolColumn get done => boolean().withDefault(Constant<bool>(false))();
+  BoolColumn get done => boolean().withDefault(Constant(false))();
 
   /// Whether the submission is marked as important.
-  BoolColumn get important => boolean().withDefault(Constant<bool>(false))();
+  BoolColumn get important => boolean().withDefault(Constant(false))();
 
   /// Repeat type of the submission.
   IntColumn get repeat =>
@@ -45,13 +45,7 @@ class Submissions extends Table {
   DateTimeColumn get updatedAt => dateTime().clientDefault(() => clock.now())();
 
   @override
-  Set<Column<Object>>? get primaryKey => <Column<Object>>{id};
+  Set<Column<Object>>? get primaryKey => {id};
 }
 
 enum RepeatType { none, weekly, monthly }
-
-extension SubmissionExtension on Submission {
-  /// A normalized [due] value. If [dueDateOnly] is true, the time is set to 23:59.
-  DateTime get dueDateTime =>
-      dueDateOnly ? DateTime(due.year, due.month, due.day, 23, 59) : due;
-}

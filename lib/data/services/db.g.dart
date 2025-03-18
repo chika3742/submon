@@ -44,6 +44,10 @@ class $SubmissionsTable extends Submissions
     'due',
     aliasedName,
     false,
+    check:
+        () =>
+            dueDateOnly.isValue(false) |
+            (due.hour.isValue(23) & due.minute.isValue(59)),
     type: DriftSqlType.dateTime,
     requiredDuringInsert: true,
   );
@@ -72,7 +76,7 @@ class $SubmissionsTable extends Submissions
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("done" IN (0, 1))',
     ),
-    defaultValue: Constant<bool>(false),
+    defaultValue: Constant(false),
   );
   static const VerificationMeta _importantMeta = const VerificationMeta(
     'important',
@@ -87,7 +91,7 @@ class $SubmissionsTable extends Submissions
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("important" IN (0, 1))',
     ),
-    defaultValue: Constant<bool>(false),
+    defaultValue: Constant(false),
   );
   static const VerificationMeta _repeatMeta = const VerificationMeta('repeat');
   @override
@@ -371,8 +375,7 @@ class Submission extends DataClass implements Insertable<Submission> {
   /// Detail text of the submission.
   final String details;
 
-  /// Raw due datetime of the submission. To obtain a normalized datetime, use
-  /// [SubmissionExtension.dueDateTime].
+  /// Raw due datetime of the submission.
   final DateTime due;
 
   /// If true, the user only cares about the due date, not the time.

@@ -6,7 +6,7 @@ import "package:drift_flutter/drift_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../models/models.dart";
+import "../models/submissions.dart";
 
 part "db.g.dart";
 
