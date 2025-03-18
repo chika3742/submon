@@ -1,19 +1,17 @@
-import "dart:ui";
-
-import "package:clock/clock.dart";
 import "package:drift/drift.dart";
 import "package:drift_flutter/drift_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../models/submissions.dart";
+import "db.drift.dart";
 
 part "db.g.dart";
 
 @DriftDatabase(tables: [
   Submissions,
 ])
-class AppDatabase extends _$AppDatabase {
+class AppDatabase extends $AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
