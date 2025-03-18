@@ -29,6 +29,7 @@ dependencies:
   drift: ^2.25.1
   drift_flutter: ^0.2.4
   hooks_riverpod: ^2.6.1
+  diffutil_dart: ^4.0.1
 
 dev_dependencies:
   flutter_test:

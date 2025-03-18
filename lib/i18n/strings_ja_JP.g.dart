@@ -83,6 +83,7 @@ class TranslationsCommonJaJp {
 
 	// Translations
 	String get appName => 'Submon';
+	String errorOccurred({required Object message}) => 'エラーが発生しました：${message}';
 }
 
 // Path: pages
@@ -104,6 +105,7 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'common.appName': return 'Submon';
+			case 'common.errorOccurred': return ({required Object message}) => 'エラーが発生しました：${message}';
 			case 'pages.submissions': return '提出物';
 			case 'pages.digestives': return 'Digestive';
 			case 'pages.timetable': return '時間割';

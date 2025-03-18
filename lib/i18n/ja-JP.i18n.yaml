@@ -1,5 +1,6 @@
 common:
   appName: Submon
+  errorOccurred: エラーが発生しました：$message
 
 pages:
   submissions: 提出物

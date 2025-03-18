@@ -36,7 +36,7 @@ class SubmissionItem extends StatelessWidget {
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () {},
+          onTap: onItemPressed,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -159,7 +159,6 @@ class SubmissionItem extends StatelessWidget {
     return null;
   }
 }
-
 
 class _RemainingTimePainter extends CustomPainter {
   const _RemainingTimePainter({required this.strokeColor});
