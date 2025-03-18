@@ -37,17 +37,23 @@ final GoRouter _router = GoRouter(
 );
 
 class Application extends ConsumerWidget {
-  const Application({super.key});
+  const Application({super.key, this.router, this.locale});
+
+  final RouterConfig<Object>? router;
+  final Locale? locale;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // eager initialization to avoid creating multiple db instances
-    ref.watch(appDatabaseProvider);
+    // eager initialization to avoid creating multiple db instances.
+    // this will be disabled during tests
+    if (router == null) {
+      ref.watch(appDatabaseProvider);
+    }
 
     return MaterialApp.router(
-      routerConfig: _router,
+      routerConfig: router ?? _router,
       theme: _buildBaseTheme(Brightness.light).copyWith(
-        extensions: <ThemeExtension<dynamic>>[
+        extensions: [
           SubmonThemeExtension(
             safeDueTextColor: Colors.green.shade800,
             nearDueTextColor: Colors.orange.shade800,
@@ -57,7 +63,7 @@ class Application extends ConsumerWidget {
         ],
       ),
       darkTheme: _buildBaseTheme(Brightness.dark).copyWith(
-        extensions: <ThemeExtension<dynamic>>[
+        extensions: [
           SubmonThemeExtension(
             safeDueTextColor: Colors.green.shade300,
             nearDueTextColor: Colors.orange.shade300,
@@ -66,7 +72,7 @@ class Application extends ConsumerWidget {
           ),
         ],
       ),
-      locale: LocaleSettings.currentLocale.flutterLocale,
+      locale: locale ?? LocaleSettings.currentLocale.flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
     );
