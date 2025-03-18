@@ -39,6 +39,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final TranslationsCommonJaJp common = TranslationsCommonJaJp.internal(_root);
 	late final TranslationsPagesJaJp pages = TranslationsPagesJaJp.internal(_root);
+	Map<String, String> get repeatTypes => {
+		'none': 'しない',
+		'weekly': '毎週',
+		'monthly': '毎月',
+	};
+	late final TranslationsDateTimePickerJaJp dateTimePicker = TranslationsDateTimePickerJaJp.internal(_root);
 	Map<String, dynamic> get durationUnit => {
 		'hours': ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
 			n: n,
@@ -83,7 +89,9 @@ class TranslationsCommonJaJp {
 
 	// Translations
 	String get appName => 'Submon';
+	String get done => '完了';
 	String errorOccurred({required Object message}) => 'エラーが発生しました：${message}';
+	String get repeat => '繰り返し';
 }
 
 // Path: pages
@@ -99,17 +107,33 @@ class TranslationsPagesJaJp {
 	String get more => 'その他';
 }
 
+// Path: dateTimePicker
+class TranslationsDateTimePickerJaJp {
+	TranslationsDateTimePickerJaJp.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get addTime => '時間を追加';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'common.appName': return 'Submon';
+			case 'common.done': return '完了';
 			case 'common.errorOccurred': return ({required Object message}) => 'エラーが発生しました：${message}';
+			case 'common.repeat': return '繰り返し';
 			case 'pages.submissions': return '提出物';
 			case 'pages.digestives': return 'Digestive';
 			case 'pages.timetable': return '時間割';
 			case 'pages.more': return 'その他';
+			case 'repeatTypes.none': return 'しない';
+			case 'repeatTypes.weekly': return '毎週';
+			case 'repeatTypes.monthly': return '毎月';
+			case 'dateTimePicker.addTime': return '時間を追加';
 			case 'durationUnit.hours': return ({required num n, required InlineSpan Function(num) nBuilder}) => RichPluralResolvers.bridge(
 				n: n,
 				resolver: _root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'),

@@ -1,12 +1,22 @@
 common:
   appName: Submon
+  done: 完了
   errorOccurred: エラーが発生しました：$message
+  repeat: 繰り返し
 
 pages:
   submissions: 提出物
   digestives: Digestive
   timetable: 時間割
   more: その他
+
+repeatTypes(map):
+  none: しない
+  weekly: 毎週
+  monthly: 毎月
+
+dateTimePicker:
+  addTime: 時間を追加
 
 # when adding the (map) modifier, descendant rich texts are not generated. (bug?)
 # To get around this, we use flat maps in the code.
