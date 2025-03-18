@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:go_router/go_router.dart";
 import "package:google_fonts/google_fonts.dart";
 
+import "data/services/db.dart";
 import "i18n/strings.g.dart";
 import "router/routes.dart";
 import "ui/core/theme_extension.dart";
@@ -35,11 +36,14 @@ final GoRouter _router = GoRouter(
   },
 );
 
-class Application extends StatelessWidget {
+class Application extends ConsumerWidget {
   const Application({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // eager initialization to avoid creating multiple db instances
+    ref.watch(appDatabaseProvider);
+
     return MaterialApp.router(
       routerConfig: _router,
       theme: _buildBaseTheme(Brightness.light).copyWith(

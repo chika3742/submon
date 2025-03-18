@@ -3,9 +3,10 @@ import "dart:ui";
 import "package:clock/clock.dart";
 import "package:drift/drift.dart";
 import "package:drift_flutter/drift_flutter.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../models/models.dart";
-import "../models/type_converters.dart";
 
 part "db.g.dart";
 
@@ -23,4 +24,13 @@ class AppDatabase extends _$AppDatabase {
       name: "db",
     );
   }
+}
+
+@riverpod
+AppDatabase appDatabase(Ref ref) {
+  final db = AppDatabase();
+  ref.onDispose(() {
+    db.close();
+  });
+  return db;
 }
